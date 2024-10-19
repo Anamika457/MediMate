@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:medi_mate/features/home/home_page_view.dart';
-import 'package:medi_mate/resources/screen_util.dart';
 
 class PageThree extends StatefulWidget {
   const PageThree({super.key});
@@ -15,7 +14,7 @@ class _WelcomePageThree extends State<PageThree> {
     void navigateToHomePage(BuildContext context) {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const HomePage()),
+      MaterialPageRoute(builder: (context) => const HomeScreen()),
     );
   }
     return MaterialApp(
@@ -67,8 +66,8 @@ class _WelcomePageThree extends State<PageThree> {
               textAlign: TextAlign.center),
         )),
         Positioned(
-              bottom: 70,
-              right: 90,
+              bottom: 80,
+              right: 120,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xff77bfa3),

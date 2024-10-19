@@ -1,187 +1,142 @@
 import 'package:flutter/material.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key); 
-
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  bool isLoading = false;
-  // late List<Subject> subjects = []; 
-  List<Widget> sliverLists = []; 
-
-  @override
-  void initState() {
-    super.initState();
-    // refreshSubject();
-  }
-
-  // Future refreshSubject() async {
-  //   setState(() => isLoading = true); 
-
-  //   final allSubjects = await NotesDatabase.instance.readAllSubjects();
-
-  //   subjects = allSubjects.where((subject) => subject.subject != 'New Subject' && subject.subject.isNotEmpty).toList();
-
-  //   setState(() => isLoading = false); 
-  // }
-
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size; 
-    final widthPadding = size.width * 0.025;
-
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: size.height * 0.1,
-        title: const Text(
-          "FlashyCards",
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 32,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        backgroundColor: Colors.indigo[900],
-        centerTitle: true,
-        elevation: 0,
-      ),
-      body: Padding(
-        padding: EdgeInsets.only(left: widthPadding, right: widthPadding),
-        child: CustomScrollView(
-          slivers: [
-            const SliverAppBar(
-              floating: true,
-              title: Text(
-                "Welcome to FlashyCards :)",
+        title: RichText(
+          text: const TextSpan(
+            children: [
+              TextSpan(
+                text: 'Medi',
                 style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 25,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 30,
+                  color: Color(0xFF78C4A1), 
                 ),
               ),
-              backgroundColor: Colors.black,
-            ),
-            SliverList(
-              delegate: SliverChildBuilderDelegate(
-                    (context, index) {
-                  return Container(
-                    height: 200,
-                    margin:const EdgeInsets.only(top:6.0 ,bottom: 6.0),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      border: Border.all(
-                        color: Colors.black,
-                        width: 2.0,
-                      ),
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    child: ListTile(
-                      // title: Text(
-                      //   // "SUBJECT: ${subjects.length > index ? subjects[index].subject : ''}",
-                      //   style: const TextStyle(
-                      //     fontSize: 22,
-                      //     fontWeight: FontWeight.bold,
-                      //   ),
-                      // ),
-                      // onTap: () {
-                      //   Navigator.push(
-                      //     context,
-                      //     MaterialPageRoute(builder: (context) => NotesPage(subject: subjects[index])),
-                      //     // to redirect the page to flashcards and to pass in the subject name too
-                      //   );
-                      // },
-                    ),
-                  );
-                },
-                // childCount: subjects.length, // the number of sliver lists is equal to the number of elements in the list subject
+              TextSpan(
+                text: 'Mate',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 30,
+                  color: Colors.black, 
+                ),
               ),
-            ),
-            ...sliverLists, // to display the other sliver lists when created
+            ],
+          ),
+        ),
+        centerTitle: true,
+        elevation: 0,
+        backgroundColor: const Color(0xFFF1E8B8),
+      ),
+      backgroundColor: const Color(0xFFF1E8B8),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            timeCard("Morning"),
+            const SizedBox(height: 20),
+            timeCard("Afternoon"),
+            const SizedBox(height: 20),
+            timeCard("Evening"),
           ],
         ),
       ),
-      backgroundColor: Colors.blueGrey[900],
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          createList();
-        },
-        backgroundColor: Colors.white,
-        child: const Icon(Icons.add),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 32.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Transform.translate(
+              offset: const Offset(0, -40),
+              child: SizedBox(
+                width: 70, 
+                height: 70, 
+                child: FloatingActionButton(
+                  onPressed: () {
+                    // TODO: Add action for the help button
+                  },
+                  backgroundColor: const Color(0xFF78C4A1),
+                  shape: const CircleBorder(
+                    side: BorderSide(
+                      color: Color(0xFF78C4A1), 
+                      width: 2, 
+                    ),
+                  ), 
+                  child: const Icon(Icons.help_outline, color: Colors.black),
+                ),
+              ),
+            ),
+            SizedBox(
+              width: 90, 
+              height: 90,
+              child: FloatingActionButton(
+                onPressed: () {
+                  // TODO: Add action for the microphone button
+                },
+                backgroundColor: const Color(0xFF78C4A1),
+                shape: const CircleBorder(
+                  side: BorderSide(
+                    color: Color(0xFF78C4A1), 
+                    width: 2, 
+                  ),
+                ), 
+                child: const Icon(Icons.mic, color: Colors.black),
+              ),
+            ),
+            Transform.translate(
+              offset: const Offset(0, -40), 
+              child: SizedBox(
+                width: 70, 
+                height: 70, 
+                child: FloatingActionButton(
+                  onPressed: () {
+                    // TODO: Add action for the add button
+                  },
+                  backgroundColor: const Color(0xFF78C4A1),
+                  shape: const CircleBorder(
+                    side: BorderSide(
+                      color: Color(0xFF78C4A1), 
+                      width: 2, 
+                    ),
+                  ), 
+                  child: const Icon(Icons.add, color: Colors.black),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
 
-  void createList() {
-    String newSubject = '';
-
-    sliverLists.add(
-      SliverList(
-        delegate: SliverChildBuilderDelegate(
-              (context, index) {
-            return Container(
-              height: 200,
-              margin: const EdgeInsets.only(bottom: 8.0),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                border: Border.all(
-                  color: Colors.black,
-                  width: 2.0,
-                ),
-                borderRadius: BorderRadius.circular(15),
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center, 
-                children: [
-                  TextField(
-                    onChanged: (value) {
-                      newSubject = value; 
-                    },
-                    maxLength: 30,
-                    decoration: const InputDecoration(
-                      labelText: 'Type in a subject name.....',
-                      labelStyle: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
-                    ),
-                  ),
-                  Text(
-                    "SUBJECT: $newSubject",
-                    style: const TextStyle(
-                      fontSize: 22,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  // TextButton(
-                  //   onPressed: () async {
-                  //     await NotesDatabase.instance.createSubject(Subject(subject: newSubject),); // create a new subject in the database with the user input
-                  //     await refreshSubject(); // to refresh the subjects
-                  //     setState(() {}); // used to update the state of the widget
-                  //   },
-                  //   style: ButtonStyle(
-                  //     backgroundColor: WidgetStateProperty.all<Color>(Colors.black), // the button will be black in color
-                  //     foregroundColor: WidgetStateProperty.all<Color>(Colors.white), // the text inside the button will be white in color
-                  //     padding: WidgetStateProperty.all<EdgeInsetsGeometry>(const EdgeInsets.all(10)),
-                  //     textStyle: WidgetStateProperty.all<TextStyle>(
-                  //       const TextStyle(fontSize: 18),
-                  //     ),
-                  //     shape: WidgetStateProperty.all<OutlinedBorder>(
-                  //       RoundedRectangleBorder(
-                  //         borderRadius: BorderRadius.circular(8.0), // for rounded corners of sliver list
-                  //       ),
-                  //       // this is for the styling the button
-                  //     ),
-                  //   ),
-                  //   child: const Text("OK"),
-                  // ),
-                ],
-              ),
-            );
-          },
-          childCount: 1,
+  Widget timeCard(String title) {
+    return Card(
+      color: const Color(0xFFF1E8B8),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15),
+        side: const BorderSide(color: Color(0xFF78C4A1), width: 2),
+      ),
+      child: SizedBox(
+        width: double.infinity,
+        height: 165,
+        child: Center(
+          child: Text(
+            title,
+            style: const TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+              color: Color(0xFF78C4A1),
+            ),
+          ),
         ),
       ),
     );
-    setState(() {});
   }
 }
