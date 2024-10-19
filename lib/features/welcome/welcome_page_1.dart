@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:medi_mate/features/welcome/welcome_page_2.dart';
 import 'package:medi_mate/features/welcome/welcome_page_3.dart';
+import 'package:medi_mate/resources/screen_util.dart';
 
 class PageOne extends StatefulWidget {
   const PageOne({super.key});
@@ -41,17 +42,17 @@ class _WelcomePageOne extends State<PageOne> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const SizedBox(
-                        height: 80,
+                      SizedBox(
+                        height: ScreenUtils.w1SizedBox(context),
                       ),
                       Image.asset(
                         'assets/Doctor.png',
                       ),
                       Container(
-                        margin: const EdgeInsets.symmetric(
-                            vertical: 0, horizontal: 35.0),
+                        margin:  EdgeInsets.symmetric(
+                        vertical: ScreenUtils.w1MarginVert(context), horizontal: ScreenUtils.w1MarginHorz(context)),
                         alignment: Alignment.bottomCenter,
-                        padding: const EdgeInsets.all(5.0),
+                        padding: EdgeInsets.all(ScreenUtils.w1Padding(context)),
                         child: const Text("Hey there!",
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
@@ -60,12 +61,12 @@ class _WelcomePageOne extends State<PageOne> {
                             )),
                       ),
                       Container(
-                        margin: const EdgeInsets.symmetric(
-                            vertical: 0, horizontal: 35.0),
+                        margin: EdgeInsets.symmetric(
+                        vertical: ScreenUtils.w1MarginVert(context), horizontal: ScreenUtils.w1MarginHorz(context)),
                         alignment: Alignment.bottomCenter,
-                        padding: const EdgeInsets.all(5.0),
+                        padding: EdgeInsets.all(ScreenUtils.w1Padding(context)),
                         child: const Text(
-                            "Welcome to MediMate, your personalized health companion designed to help you manage your well-being with ease.",
+                            "Welcome to MediMate, your easy health companion.",
                             style: TextStyle(
                               fontWeight: FontWeight.w300,
                               fontSize: 26.0,
@@ -81,9 +82,9 @@ class _WelcomePageOne extends State<PageOne> {
               ],
             ),
             Positioned(
-              bottom: 150,
-              left: 0,
-              right: 0,
+              bottom: ScreenUtils.w1Pos(context),
+              left: ScreenUtils.w1PosW(context),
+              right:ScreenUtils.w1PosW(context),
               child: Center(
                 child: DotsIndicator(
                   dotsCount: _totalPages,
@@ -96,13 +97,13 @@ class _WelcomePageOne extends State<PageOne> {
               ),
             ),
             Positioned(
-              top: 0,
-              left: 0,
+              top: ScreenUtils.w1MarginVert(context),
+          left: ScreenUtils.w1PosW(context),
               child: Image.asset('assets/path.png'),
             ),
             Positioned(
-              bottom: 0,
-              right: 0,
+              bottom: ScreenUtils.w1MarginVert(context),
+            right: ScreenUtils.w1PosW(context),
               child: Image.asset('assets/path_bottom.png'),
             )
           ],
