@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:medi_mate/features/welcome/welcome_page_1.dart';
 import 'package:medi_mate/resources/colors.dart';
 
 void main() {
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
       title: 'MediMate App',
       theme: GlobalAppTheme.themeData,
       debugShowCheckedModeBanner: false,
-      // home:,
+      home:const PageOne(),
     );
   }
 }
