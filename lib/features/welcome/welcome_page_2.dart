@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:medi_mate/resources/screen_util.dart';
 
 class PageTwo extends StatefulWidget {
   const PageTwo({super.key});
@@ -19,8 +20,8 @@ class _WelcomePageTwo extends State<PageTwo> {
             child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(
-              height: 120,
+             SizedBox(
+              height: ScreenUtils.w2SizedBox(context),
             ),
             Image.asset(
               'assets/Ambulance-Driver.png',
@@ -29,11 +30,11 @@ class _WelcomePageTwo extends State<PageTwo> {
         )),
         Positioned(
             child: Container(
-          height: 550,
-          margin: const EdgeInsets.symmetric(vertical: 50.0, horizontal: 35.0),
+          height: ScreenUtils.w2ContHeight(context),
+          margin: EdgeInsets.symmetric(vertical: ScreenUtils.w2MarginVert(context), horizontal: ScreenUtils.w2MarginHorz(context)),
           alignment: Alignment.bottomCenter,
-          padding: const EdgeInsets.all(45.0),
-          child: const Text("Alerts & Notifications",
+          padding: EdgeInsets.all(ScreenUtils.w2Padding(context)),
+          child: const Text("Alerts",
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 34.0,
@@ -43,10 +44,10 @@ class _WelcomePageTwo extends State<PageTwo> {
         )),
         Positioned(
             child: Container(
-          height: 600,
-          margin: const EdgeInsets.symmetric(vertical: 50.0, horizontal: 35.0),
+          height: ScreenUtils.w2Pos(context),
+          margin: EdgeInsets.symmetric(vertical: ScreenUtils.w2MarginVert(context), horizontal: ScreenUtils.w2MarginHorz(context)),
           alignment: Alignment.bottomCenter,
-          padding: const EdgeInsets.all(20.0),
+          padding: EdgeInsets.all(ScreenUtils.w2Padding2(context)),
           child: const Text(
               "We’ll help you stay on track with your medications.",
               style: TextStyle(

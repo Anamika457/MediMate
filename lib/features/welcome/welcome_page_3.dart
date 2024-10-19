@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:medi_mate/features/home/home_page_view.dart';
+import 'package:medi_mate/resources/screen_util.dart';
 
 class PageThree extends StatefulWidget {
   const PageThree({super.key});
@@ -10,6 +12,12 @@ class PageThree extends StatefulWidget {
 class _WelcomePageThree extends State<PageThree> {
   @override
   Widget build(BuildContext context) {
+    void navigateToHomePage(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const HomePage()),
+    );
+  }
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
@@ -20,7 +28,7 @@ class _WelcomePageThree extends State<PageThree> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(
-              height: 90,
+              height: 50,
             ),
             Image.asset(
               'assets/Nurse.png',
@@ -30,7 +38,7 @@ class _WelcomePageThree extends State<PageThree> {
         )),
         Positioned(
             child: Container(
-          height: 550,
+          height: 490,
           margin: const EdgeInsets.symmetric(vertical: 50.0, horizontal: 35.0),
           alignment: Alignment.bottomCenter,
           padding: const EdgeInsets.all(50.0),
@@ -45,12 +53,12 @@ class _WelcomePageThree extends State<PageThree> {
         //
         Positioned(
             child: Container(
-          height: 650,
+          height: 590,
           margin: const EdgeInsets.symmetric(vertical: 50.0, horizontal: 35.0),
           alignment: Alignment.bottomCenter,
           padding: const EdgeInsets.all(50.0),
           child: const Text(
-              "Use simple Voice Commands to navigate MediMate hands-free.",
+              "Navigate using Voice Commands.",
               style: TextStyle(
                 fontWeight: FontWeight.w300,
                 fontSize: 26.0,
@@ -58,7 +66,33 @@ class _WelcomePageThree extends State<PageThree> {
               ),
               textAlign: TextAlign.center),
         )),
-      ])),
+        Positioned(
+              bottom: 70,
+              right: 90,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xff77bfa3),
+                  shadowColor: Colors.black,
+                  padding: const EdgeInsets.only(left: 40, right: 40),
+                  shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(20))),
+                  textStyle: const TextStyle(
+                      color: Colors.black,
+                      fontSize: 20,
+                      fontStyle: FontStyle.italic),
+                ),
+                child: const Text(
+                  'Get Started',
+                  style: TextStyle(
+                    color: Color.fromARGB(255, 255, 255, 255),
+                  ),
+                ),
+                onPressed: () => navigateToHomePage(context),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
