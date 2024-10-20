@@ -1,8 +1,37 @@
 import 'package:flutter/material.dart';
-import 'package:medi_mate/features/help/help.dart';
+import 'package:medi_mate/database/database.dart';
+import 'package:medi_mate/features/home/medicine_page.dart';
+import 'package:medi_mate/models/medicine.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key); 
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  bool isLoading = false;
+  late List<Frequency> frequencyList = []; 
+  List<Widget> sliverLists = []; 
+  final TextEditingController _controller = TextEditingController(); 
+
+  @override
+  void initState() {
+    super.initState();
+    refreshFrequency();
+  }
+
+  Future refreshFrequency() async {
+    setState(() => isLoading = true); 
+
+    final allFrequency = await MedicineDatabase.instance.readAllFrequencies();
+    
+    frequencyList = allFrequency.where((freq) => freq.timing != 'Frequency Addition').toList();
+
+    setState(() => isLoading = false); 
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,15 +65,38 @@ class HomeScreen extends StatelessWidget {
       ),
       backgroundColor: const Color(0xFFF1E8B8),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            timeCard("Morning"),
-            const SizedBox(height: 20),
-            timeCard("Afternoon"),
-            const SizedBox(height: 20),
-            timeCard("Evening"),
+        padding: const EdgeInsets.symmetric(horizontal: 10),
+        child: CustomScrollView(
+          slivers: [
+            SliverList(
+              delegate: SliverChildBuilderDelegate(
+                (context, index) {
+                  return Container(
+                    height: 200,
+                    margin: const EdgeInsets.symmetric(vertical: 6),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      border: Border.all(color: const Color(0xFF78C4A1), width: 2.0),
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    child: ListTile(
+                      title: Text(
+                        frequencyList.length > index ? frequencyList[index].timing : '',
+                        style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                      ),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => MedicinePage(timing: frequencyList[index])),
+                        );
+                      },
+                    ),
+                  );
+                },
+                childCount: frequencyList.length,
+              ),
+            ),
+            ...sliverLists,
           ],
         ),
       ),
@@ -60,21 +112,15 @@ class HomeScreen extends StatelessWidget {
                 width: 70, 
                 height: 70, 
                 child: FloatingActionButton(
-                  heroTag:'help',
+                  heroTag: 'help',
                   onPressed: () {
-                     Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const HelpScreen()),
-              );
+                    // TODO: Add action for the help button
                   },
                   backgroundColor: const Color(0xFF78C4A1),
                   shape: const CircleBorder(
-                    side: BorderSide(
-                      color: Color(0xFF78C4A1), 
-                      width: 2, 
-                    ),
+                    side: BorderSide(color: Color(0xFF78C4A1), width: 2),
                   ), 
-                  child: const Icon(Icons.help_outline, color: Colors.black),
+                  child: const Icon(Icons.help_outline, color: Colors.black, size: 30),
                 ),
               ),
             ),
@@ -88,12 +134,9 @@ class HomeScreen extends StatelessWidget {
                 },
                 backgroundColor: const Color(0xFF78C4A1),
                 shape: const CircleBorder(
-                  side: BorderSide(
-                    color: Color(0xFF78C4A1), 
-                    width: 2, 
-                  ),
+                  side: BorderSide(color: Color(0xFF78C4A1), width: 2),
                 ), 
-                child: const Icon(Icons.mic, color: Colors.black),
+                child: const Icon(Icons.mic, color: Colors.black, size: 40),
               ),
             ),
             Transform.translate(
@@ -102,18 +145,15 @@ class HomeScreen extends StatelessWidget {
                 width: 70, 
                 height: 70, 
                 child: FloatingActionButton(
-                  heroTag:'add',
+                  heroTag: 'add',
                   onPressed: () {
-                    // TODO: Add action for the add button
+                    createList();
                   },
                   backgroundColor: const Color(0xFF78C4A1),
                   shape: const CircleBorder(
-                    side: BorderSide(
-                      color: Color(0xFF78C4A1), 
-                      width: 2, 
-                    ),
+                    side: BorderSide(color: Color(0xFF78C4A1), width: 2),
                   ), 
-                  child: const Icon(Icons.add, color: Colors.black),
+                  child: const Icon(Icons.add, color: Colors.black, size: 30),
                 ),
               ),
             ),
@@ -123,27 +163,67 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Widget timeCard(String title) {
-    return Card(
-      color: const Color(0xFFF1E8B8),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15),
-        side: const BorderSide(color: Color(0xFF78C4A1), width: 2),
-      ),
-      child: SizedBox(
-        width: double.infinity,
-        height: 165,
-        child: Center(
-          child: Text(
-            title,
-            style: const TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-              color: Color(0xFF78C4A1),
-            ),
-          ),
+  void createList() {
+    sliverLists.add(
+      SliverList(
+        delegate: SliverChildBuilderDelegate(
+          (context, index) {
+            return Container(
+              height: 200,
+              margin: const EdgeInsets.only(bottom: 8.0),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                border: Border.all(color: const Color(0xFF78C4A1) ,width: 2.0),
+                borderRadius: BorderRadius.circular(15),
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  TextField(
+                    controller: _controller,
+                    maxLength: 30,
+                    decoration: const InputDecoration(
+                      labelText: 'Type in a frequency name.....',
+                      labelStyle: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () async {
+                      String newtiming = _controller.text.trim();
+                      if (newtiming.isNotEmpty) {
+                        await MedicineDatabase.instance.createFrequency(Frequency(timing: newtiming));
+                        await refreshFrequency();
+                        _controller.clear(); 
+                        setState(() {}); 
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text("Please enter a frequency name.")),
+                        );
+                      }
+                    },
+                    style: ButtonStyle(
+                      backgroundColor: WidgetStateProperty.all<Color>(Colors.black),
+                      foregroundColor: WidgetStateProperty.all<Color>(Colors.white),
+                      padding: WidgetStateProperty.all<EdgeInsetsGeometry>(const EdgeInsets.all(10)),
+                      textStyle: WidgetStateProperty.all<TextStyle>(
+                        const TextStyle(fontSize: 18),
+                      ),
+                      shape: WidgetStateProperty.all<OutlinedBorder>(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                      ),
+                    ),
+                    child: const Text("OK"),
+                  ),
+                ],
+              ),
+            );
+          },
+          childCount: 1,
         ),
       ),
     );
+    setState(() {});
   }
 }

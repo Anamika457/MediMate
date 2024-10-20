@@ -100,12 +100,7 @@ class _WelcomePageOne extends State<PageOne> {
               top: ScreenUtils.w1MarginVert(context),
           left: ScreenUtils.w1PosW(context),
               child: Image.asset('assets/path.png'),
-            ),
-            Positioned(
-              bottom: ScreenUtils.w1MarginVert(context),
-            right: ScreenUtils.w1PosW(context),
-              child: Image.asset('assets/path_bottom.png'),
-            )
+            ),     
           ],
         ),
       ),
