@@ -182,64 +182,51 @@ class _HomePageState extends State<HomePage> {
       SliverList(
         delegate: SliverChildBuilderDelegate(
           (context, index) {
-            return Container(
-              height: 200,
-              margin: const EdgeInsets.only(bottom: 8.0),
-              decoration: BoxDecoration(
-                color: const Color(0xFFF1E8B8),
-                border: Border.all(color: const Color(0xFF78C4A1), width: 2.0),
-                borderRadius: BorderRadius.circular(15),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.1),
-                    spreadRadius: 2,
-                    blurRadius: 8,
-                    offset: const Offset(0, 3), // changes position of shadow
-                  ),
-                ],
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  TextField(
-                    controller: _controller,
-                    maxLength: 30,
-                    decoration: const InputDecoration(
-                      labelText: 'Type in a frequency name.....',
-                      labelStyle: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
-                    ),
-                  ),
-                  TextButton(
-                    onPressed: () async {
-                      String newtiming = _controller.text.trim();
-                      if (newtiming.isNotEmpty) {
-                        await MedicineDatabase.instance.createFrequency(Frequency(timing: newtiming));
-                        await refreshFrequency();
-                        _controller.clear(); 
-                        setState(() {}); 
-                      } else {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text("Please enter a frequency name.")),
-                        );
-                      }
-                    },
-                    style: ButtonStyle(
-                      backgroundColor: WidgetStateProperty.all<Color>(const Color(0xFF78C4A1)),
-                      foregroundColor: WidgetStateProperty.all<Color>(const Color(0xFFF1E8B8)),
-                      padding: WidgetStateProperty.all<EdgeInsetsGeometry>(const EdgeInsets.all(10)),
-                      textStyle: WidgetStateProperty.all<TextStyle>(
-                        const TextStyle(fontSize: 18),
-                      ),
-                      shape: WidgetStateProperty.all<OutlinedBorder>(
-                        RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                      ),
-                    ),
-                    child: const Text("OK"),
-                  ),
-                ],
-              ),
+            return Container(child: Column(
+  mainAxisAlignment: MainAxisAlignment.center,
+  children: [
+    Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0), // Adjust horizontal padding as needed
+      child: TextField(
+        controller: _controller,
+        maxLength: 30,
+        decoration: const InputDecoration(
+          labelText: 'Type in a frequency name.....',
+          labelStyle: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+        ),
+      ),
+    ),
+    TextButton(
+      onPressed: () async {
+        String newtiming = _controller.text.trim();
+        if (newtiming.isNotEmpty) {
+          await MedicineDatabase.instance.createFrequency(Frequency(timing: newtiming));
+          await refreshFrequency();
+          _controller.clear(); 
+          setState(() {}); 
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text("Please enter a frequency name.")),
+          );
+        }
+      },
+      style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF78C4A1)),
+        foregroundColor: MaterialStateProperty.all<Color>(const Color(0xFFF1E8B8)),
+        padding: MaterialStateProperty.all<EdgeInsetsGeometry>(const EdgeInsets.all(10)),
+        textStyle: MaterialStateProperty.all<TextStyle>(
+          const TextStyle(fontSize: 18),
+        ),
+        shape: MaterialStateProperty.all<OutlinedBorder>(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8.0),
+          ),
+        ),
+      ),
+      child: const Text("OK"),
+    ),
+  ],
+)
             );
           },
           childCount: 1,

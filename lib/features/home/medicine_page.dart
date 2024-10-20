@@ -32,6 +32,7 @@ class _MedicinePageState extends State<MedicinePage> {
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
     return pickedFile?.path; // Return the image path
   }
+
   Future<void> _scheduleNotification(DateTime scheduledTime, String medicineName) async {
     await NotificationService().scheduleNotification(
       id: DateTime.now().millisecondsSinceEpoch, // Unique ID
@@ -98,62 +99,72 @@ class _MedicinePageState extends State<MedicinePage> {
         elevation: 0,
         backgroundColor: const Color(0xFFF1E8B8),
       ),
-      body: Column(
-        children: [
-          Expanded(
-            child: PageView.builder(
-              controller: _pageController,
-              itemCount: medicinesList[widget.timing.timing]?.length ?? 0,
-              onPageChanged: (index) {
-                setState(() {
-                  currentPageIndex = index;
-                });
-              },
-              itemBuilder: (context, index) {
-                Medicine medicine = medicinesList[widget.timing.timing]![index];
-                return cardFunc(medicine);
-              },
+      body: Container(
+        color: const Color(0xFFF1E8B8), // Set the background color of the entire page
+        child: Column(
+          children: [
+            Expanded(
+              child: PageView.builder(
+                controller: _pageController,
+                itemCount: medicinesList[widget.timing.timing]?.length ?? 0,
+                onPageChanged: (index) {
+                  setState(() {
+                    currentPageIndex = index;
+                  });
+                },
+                itemBuilder: (context, index) {
+                  Medicine medicine = medicinesList[widget.timing.timing]![index];
+                  return cardFunc(medicine);
+                },
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(56.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                ElevatedButton(
-                  onPressed: () {
-                    if (currentPageIndex > 0) {
-                      _pageController.previousPage(
-                        duration: const Duration(milliseconds: 500),
-                        curve: Curves.easeInOut,
-                      );
-                    }
-                  },
-                  child: const Text(
-                    'Previous',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black),
+            Padding(
+              padding: const EdgeInsets.all(56.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      if (currentPageIndex > 0) {
+                        _pageController.previousPage(
+                          duration: const Duration(milliseconds: 500),
+                          curve: Curves.easeInOut,
+                        );
+                      }
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFF78C4A1), // Background color
+                      foregroundColor: const Color(0xFFF1E8B8), // Text color
+                    ),
+                    child: const Text(
+                      'Previous',
+                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
                   ),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    if (currentPageIndex < (medicinesList[widget.timing.timing]?.length ?? 0) - 1) {
-                      _pageController.nextPage(
-                        duration: const Duration(milliseconds: 500),
-                        curve: Curves.easeInOut,
-                      );
-                    }
-                  },
-                  child: const Text(
-                    'Next',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black),
+                  ElevatedButton(
+                    onPressed: () {
+                      if (currentPageIndex < (medicinesList[widget.timing.timing]?.length ?? 0) - 1) {
+                        _pageController.nextPage(
+                          duration: const Duration(milliseconds: 500),
+                          curve: Curves.easeInOut,
+                        );
+                      }
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFF78C4A1), // Background color
+                      foregroundColor: const Color(0xFFF1E8B8), // Text color
+                    ),
+                    child: const Text(
+                      'Next',
+                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
-      backgroundColor: Colors.blueGrey[900],
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           TextEditingController nameController = TextEditingController();
@@ -165,8 +176,9 @@ class _MedicinePageState extends State<MedicinePage> {
             context: context,
             builder: (BuildContext context) {
               return AlertDialog(
-                title: const Text('Enter Medicine Details'),
-                content: SingleChildScrollView(
+                backgroundColor: const Color(0xFFBFD8BD), // Set the dialog background color
+                title: const Text('Enter Medicine Details', style: TextStyle(color: Colors.black)), // Title text color
+                content: SingleChildScrollView( // Allow scrolling in dialog content
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
@@ -181,20 +193,20 @@ class _MedicinePageState extends State<MedicinePage> {
                         decoration: const InputDecoration(
                           hintText: 'Enter duration (in days)...',
                         ),
-              
                       ),
                       TextButton(
                         onPressed: () async {
-                     
                           String? pickedPath = await _pickImage();
                           if (pickedPath != null) {
                             photoPath = pickedPath; 
                           }
                         },
-                        child: const Text('Pick Image'),
+                        child: const Text(
+                          'Pick Image',
+                          style: TextStyle(color: Colors.black), // Consistent text color
+                        ),
                       ),
-
-                   TextButton(
+                      TextButton(
                         onPressed: () async {
                           selectedTime = await showTimePicker(
                             context: context,
@@ -207,7 +219,10 @@ class _MedicinePageState extends State<MedicinePage> {
                             return null;
                           });
                         },
-                        child: const Text('Select Time'),
+                        child: const Text(
+                          'Select Time',
+                          style: TextStyle(color: Colors.black), // Consistent text color
+                        ),
                       ),
                     ],
                   ),
@@ -217,12 +232,11 @@ class _MedicinePageState extends State<MedicinePage> {
                     onPressed: () {
                       Navigator.of(context).pop();
                     },
-                    child: const Text('CANCEL'),
+                    child: const Text('CANCEL', style: TextStyle(color: Colors.black)),
                   ),
                   TextButton(
                     onPressed: () async {
                       if (nameController.text.isNotEmpty && durationController.text.isNotEmpty) {
-            
                         Medicine newMedicine = Medicine(
                           medicineName: nameController.text,
                           duration: durationController.text,
@@ -230,17 +244,13 @@ class _MedicinePageState extends State<MedicinePage> {
                           photo: photoPath ?? '',
                         );
 
-                    
                         print('Saving medicine: ${newMedicine.medicineName}, Duration: ${newMedicine.duration}, Photo: ${newMedicine.photo}');
-                        print('Scheduled time: $selectedTime AAAAAAAAAAAAAAA');
-
 
                         await MedicineDatabase.instance.createMedicine(newMedicine);
-                        await _scheduleNotification(selectedTime!, newMedicine.medicineName);
                         
                         // Refresh the list
                         refreshMedicines(); 
-                        
+                        await _scheduleNotification(selectedTime!, newMedicine.medicineName);
                         Navigator.of(context).pop(); 
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(
@@ -248,30 +258,31 @@ class _MedicinePageState extends State<MedicinePage> {
                         );
                       }
                     },
-                    child: const Text('SAVE'),
+                    child: const Text('SAVE', style: TextStyle(color: Colors.black)),
                   ),
                 ],
               );
             },
           );
         },
-        backgroundColor: Colors.white,
-        child: const Icon(Icons.add),
+        backgroundColor: const Color(0xFF78C4A1), // Set the background color of the floating action button
+        child: const Icon(Icons.add, color: Color(0xFFF1E8B8)), // Icon color
       ),
     );
   }
-
-  Widget cardFunc(Medicine medicine) {
+Widget cardFunc(Medicine medicine) {
   return Center(
     child: Card(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(40.0),
-        side: const BorderSide(color: Colors.black, width: 5.0),
       ),
       clipBehavior: Clip.hardEdge,
-      child: SizedBox(
-        width: 350,
-        height: 500,
+      color: const Color(0xFFBFD8BD), // Card background color
+      child: Container(
+        width: 350, // Keep the width fixed
+        constraints: BoxConstraints( // Allow the card to grow vertically if needed
+          maxHeight: 400, // Set a max height to prevent overflow
+        ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -280,22 +291,36 @@ class _MedicinePageState extends State<MedicinePage> {
               style: const TextStyle(
                 fontSize: 27,
                 fontWeight: FontWeight.bold,
+                color: Colors.black, // Text color for medicine name
               ),
-              textAlign: TextAlign.center,
             ),
-            const SizedBox(height: 16), 
+            const SizedBox(height: 20),
+            medicine.photo.isNotEmpty
+                ? Image.file(File(medicine.photo), height: 150) // Display medicine image
+                : const Text('No image selected', style: TextStyle(color: Colors.black)), // Fallback text
+            const SizedBox(height: 20),
             Text(
               'Duration: ${medicine.duration} days',
-              style: const TextStyle(fontSize: 20),
-              textAlign: TextAlign.center,
+              style: const TextStyle(
+                fontSize: 20,
+                color: Colors.black, // Text color for duration
+              ),
             ),
-            const SizedBox(height: 16), 
-            if (medicine.photo.isNotEmpty)
-              Image.file(File(medicine.photo), height: 150, width: 150),
+            const SizedBox(height: 20),
+            Text(
+              'Timing: ${medicine.timing}',
+              style: const TextStyle(
+                fontSize: 20,
+                color: Colors.black, // Text color for timing
+              ),
+            ),
           ],
         ),
       ),
     ),
   );
 }
-}
+
+    
+  }
+  
