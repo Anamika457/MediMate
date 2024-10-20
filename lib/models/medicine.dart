@@ -85,12 +85,13 @@ class Medicine {
         photo: photo ?? this.photo,
       );
 
+
   static Medicine fromJson(Map<String, dynamic> json) => Medicine(
-    id: json[MedicineFields.id],
-    medicineName: json[MedicineFields.medicineName],
-    duration: json[MedicineFields.duration],
-    timing: json[MedicineFields.timing],
-    photo: json[MedicineFields.photo],
+    id: json[MedicineFields.id]  != null ? json[MedicineFields.id] as int : null,
+    medicineName: json[MedicineFields.medicineName] as String,
+    duration: json[MedicineFields.duration] as String, // Ensure this is String
+    timing: json[MedicineFields.timing] as String,
+    photo: json[MedicineFields.photo] as String,
   );
 
   Map<String, dynamic> toJson() => {
@@ -99,6 +100,5 @@ class Medicine {
     MedicineFields.duration: duration,
     MedicineFields.timing: timing,
     MedicineFields.photo: photo,
-
   };
 }

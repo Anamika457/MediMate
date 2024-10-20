@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:medi_mate/database/database.dart';
+import 'package:medi_mate/features/help/help.dart';
 import 'package:medi_mate/features/home/medicine_page.dart';
 import 'package:medi_mate/models/medicine.dart';
 
@@ -30,7 +31,6 @@ class _HomePageState extends State<HomePage> {
     frequencyList = allFrequency.where((freq) => freq.timing != 'Frequency Addition').toList();
 
     setState(() => isLoading = false); 
-
   }
 
   @override
@@ -75,21 +75,32 @@ class _HomePageState extends State<HomePage> {
                     height: 200,
                     margin: const EdgeInsets.symmetric(vertical: 6),
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: const Color(0xFFF1E8B8),
                       border: Border.all(color: const Color(0xFF78C4A1), width: 2.0),
                       borderRadius: BorderRadius.circular(15),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.1),
+                          spreadRadius: 2,
+                          blurRadius: 8,
+                          offset: const Offset(0, 3), // changes position of shadow
+                        ),
+                      ],
                     ),
-                    child: ListTile(
-                      title: Text(
-                        frequencyList.length > index ? frequencyList[index].timing : '',
-                        style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                    child: Center( // Center the content inside the container
+                      child: ListTile(
+                        title: Text(
+                          frequencyList.length > index ? frequencyList[index].timing : '',
+                          style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                          textAlign: TextAlign.center, // Center align the text
+                        ),
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => MedicinePage(timing: frequencyList[index])),
+                          );
+                        },
                       ),
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => MedicinePage(timing: frequencyList[index])),
-                        );
-                      },
                     ),
                   );
                 },
@@ -114,7 +125,10 @@ class _HomePageState extends State<HomePage> {
                 child: FloatingActionButton(
                   heroTag: 'help',
                   onPressed: () {
-                    // TODO: Add action for the help button
+                     Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const HelpScreen()),
+              );
                   },
                   backgroundColor: const Color(0xFF78C4A1),
                   shape: const CircleBorder(
@@ -172,9 +186,17 @@ class _HomePageState extends State<HomePage> {
               height: 200,
               margin: const EdgeInsets.only(bottom: 8.0),
               decoration: BoxDecoration(
-                color: Colors.white,
-                border: Border.all(color: const Color(0xFF78C4A1) ,width: 2.0),
+                color: const Color(0xFFF1E8B8),
+                border: Border.all(color: const Color(0xFF78C4A1), width: 2.0),
                 borderRadius: BorderRadius.circular(15),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.1),
+                    spreadRadius: 2,
+                    blurRadius: 8,
+                    offset: const Offset(0, 3), // changes position of shadow
+                  ),
+                ],
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -202,8 +224,8 @@ class _HomePageState extends State<HomePage> {
                       }
                     },
                     style: ButtonStyle(
-                      backgroundColor: WidgetStateProperty.all<Color>(Colors.black),
-                      foregroundColor: WidgetStateProperty.all<Color>(Colors.white),
+                      backgroundColor: WidgetStateProperty.all<Color>(const Color(0xFF78C4A1)),
+                      foregroundColor: WidgetStateProperty.all<Color>(const Color(0xFFF1E8B8)),
                       padding: WidgetStateProperty.all<EdgeInsetsGeometry>(const EdgeInsets.all(10)),
                       textStyle: WidgetStateProperty.all<TextStyle>(
                         const TextStyle(fontSize: 18),

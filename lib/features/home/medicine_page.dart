@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:medi_mate/database/database.dart';
+import 'package:medi_mate/features/notifications/notifications.dart';
 import 'package:medi_mate/models/medicine.dart';
 
 class MedicinePage extends StatefulWidget {
@@ -31,6 +32,14 @@ class _MedicinePageState extends State<MedicinePage> {
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
     return pickedFile?.path; // Return the image path
   }
+  Future<void> _scheduleNotification(DateTime scheduledTime, String medicineName) async {
+    await NotificationService().scheduleNotification(
+      id: DateTime.now().millisecondsSinceEpoch, // Unique ID
+      title: 'Time to take your medicine!',
+      body: 'It\'s time to take $medicineName.',
+      scheduledTime: scheduledTime,
+    );
+  }
 
   void refreshMedicines() async {
     setState(() => isLoading = true);
@@ -42,7 +51,7 @@ class _MedicinePageState extends State<MedicinePage> {
       if (!medicinesList.containsKey(note.timing)) {
         medicinesList[note.timing] = []; 
       }
-       medicinesList[note.timing]!.add(note); 
+      medicinesList[note.timing]!.add(note); 
     }
 
     setState(() {
@@ -146,113 +155,147 @@ class _MedicinePageState extends State<MedicinePage> {
       ),
       backgroundColor: Colors.blueGrey[900],
       floatingActionButton: FloatingActionButton(
-  onPressed: () async {
-    TextEditingController nameController = TextEditingController();
-    TextEditingController durationController = TextEditingController();
-    String? photoPath; // Declare photoPath here
+        onPressed: () async {
+          TextEditingController nameController = TextEditingController();
+          TextEditingController durationController = TextEditingController();
+          String? photoPath; 
+          DateTime? selectedTime;
 
-    await showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Enter Medicine Details'),
-          content: SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                TextField(
-                  controller: nameController,
-                  decoration: const InputDecoration(
-                    hintText: 'Enter medicine name...',
+          await showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: const Text('Enter Medicine Details'),
+                content: SingleChildScrollView(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      TextField(
+                        controller: nameController,
+                        decoration: const InputDecoration(
+                          hintText: 'Enter medicine name...',
+                        ),
+                      ),
+                      TextField(
+                        controller: durationController,
+                        decoration: const InputDecoration(
+                          hintText: 'Enter duration (in days)...',
+                        ),
+              
+                      ),
+                      TextButton(
+                        onPressed: () async {
+                     
+                          String? pickedPath = await _pickImage();
+                          if (pickedPath != null) {
+                            photoPath = pickedPath; 
+                          }
+                        },
+                        child: const Text('Pick Image'),
+                      ),
+
+                   TextButton(
+                        onPressed: () async {
+                          selectedTime = await showTimePicker(
+                            context: context,
+                            initialTime: TimeOfDay.now(),
+                          ).then((time) {
+                            if (time != null) {
+                              final now = DateTime.now();
+                              return DateTime(now.year, now.month, now.day, time.hour, time.minute);
+                            }
+                            return null;
+                          });
+                        },
+                        child: const Text('Select Time'),
+                      ),
+                    ],
                   ),
                 ),
-                TextField(
-                  controller: durationController,
-                  decoration: const InputDecoration(
-                    hintText: 'Enter duration (in days)...',
+                actions: <Widget>[
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: const Text('CANCEL'),
                   ),
-                  keyboardType: TextInputType.number,
-                ),
-                TextButton(
-                  onPressed: () async {
-                    // Pick the image and set the path
-                    String? pickedPath = await _pickImage();
-                    if (pickedPath != null) {
-                      photoPath = pickedPath; // Store the picked path
-                    }
-                  },
-                  child: const Text('Pick Image'),
-                ),
-              ],
-            ),
-          ),
-          actions: <Widget>[
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text('CANCEL'),
-            ),
-            TextButton(
-              onPressed: () async {
-                if (nameController.text.isNotEmpty && durationController.text.isNotEmpty) {
-                  // Create a new Medicine object with the picked image path
-                  Medicine newMedicine = Medicine(
-                    medicineName: nameController.text,
-                    duration: durationController.text,
-                    timing: widget.timing.timing,
-                    photo: photoPath ?? '', // Use the picked photo path or an empty string
-                  );
-                  await MedicineDatabase.instance.createMedicine(newMedicine);
-                  refreshMedicines(); // Refresh the list
-                  Navigator.of(context).pop(); // Close the dialog
-                } else {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text("Please fill in all fields.")),
-                  );
-                }
-              },
-              child: const Text('SAVE'),
-            ),
-          ],
-        );
-      },
-    );
-  },
-  backgroundColor: Colors.white,
-  child: const Icon(Icons.add),
-)
+                  TextButton(
+                    onPressed: () async {
+                      if (nameController.text.isNotEmpty && durationController.text.isNotEmpty) {
+            
+                        Medicine newMedicine = Medicine(
+                          medicineName: nameController.text,
+                          duration: durationController.text,
+                          timing: widget.timing.timing,
+                          photo: photoPath ?? '',
+                        );
 
-        );}}
+                    
+                        print('Saving medicine: ${newMedicine.medicineName}, Duration: ${newMedicine.duration}, Photo: ${newMedicine.photo}');
+                        print('Scheduled time: $selectedTime AAAAAAAAAAAAAAA');
 
 
-  Widget cardFunc(Medicine medicine) {
-    return Center(
-      child: Card(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(40.0),
-          side: const BorderSide(color: Colors.black, width: 5.0),
-        ),
-        clipBehavior: Clip.hardEdge,
-        child: SizedBox(
-          width: 350,
-          height: 500,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                medicine.medicineName,
-                style: const TextStyle(
-                  fontSize: 27,
-                ),
-                textAlign: TextAlign.center,
-              ),
-              if (medicine.photo.isNotEmpty)
-                Image.file(File(medicine.photo), height: 150, width: 150),
-            ],
-          ),
-        ),
+                        await MedicineDatabase.instance.createMedicine(newMedicine);
+                        await _scheduleNotification(selectedTime!, newMedicine.medicineName);
+                        
+                        // Refresh the list
+                        refreshMedicines(); 
+                        
+                        Navigator.of(context).pop(); 
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text("Please fill in all fields.")),
+                        );
+                      }
+                    },
+                    child: const Text('SAVE'),
+                  ),
+                ],
+              );
+            },
+          );
+        },
+        backgroundColor: Colors.white,
+        child: const Icon(Icons.add),
       ),
     );
   }
 
+  Widget cardFunc(Medicine medicine) {
+  return Center(
+    child: Card(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(40.0),
+        side: const BorderSide(color: Colors.black, width: 5.0),
+      ),
+      clipBehavior: Clip.hardEdge,
+      child: SizedBox(
+        width: 350,
+        height: 500,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              medicine.medicineName,
+              style: const TextStyle(
+                fontSize: 27,
+                fontWeight: FontWeight.bold,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 16), 
+            Text(
+              'Duration: ${medicine.duration} days',
+              style: const TextStyle(fontSize: 20),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 16), 
+            if (medicine.photo.isNotEmpty)
+              Image.file(File(medicine.photo), height: 150, width: 150),
+          ],
+        ),
+      ),
+    ),
+  );
+}
+}

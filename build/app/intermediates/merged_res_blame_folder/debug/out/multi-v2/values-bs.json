@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.medi_mate.app-mergeDebugResources-25:/values-bs/values-bs.xml",
+            "outputFile": "com.example.medi_mate.app-mergeDebugResources-26:/values-bs/values-bs.xml",
             "map": [
                 {
                     "source": "/home/shraavv/.gradle/caches/transforms-3/7b9cc716733896fdb33be34a758f3226/transformed/core-1.13.1/res/values-bs/values-bs.xml",

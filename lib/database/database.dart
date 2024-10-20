@@ -46,7 +46,7 @@ class MedicineDatabase {
       CREATE TABLE $tableMedicine (
         ${MedicineFields.id} INTEGER PRIMARY KEY AUTOINCREMENT,
         ${MedicineFields.medicineName} TEXT NOT NULL,
-        ${MedicineFields.duration} INTEGER NOT NULL,
+        ${MedicineFields.duration} TEXT NOT NULL ,
         ${MedicineFields.timing} TEXT NOT NULL,
         ${MedicineFields.photo} TEXT NOT NULL,
         FOREIGN KEY (${MedicineFields.timing}) REFERENCES $tableFrequency(${FrequencyFields.id})
@@ -72,9 +72,39 @@ class MedicineDatabase {
     return medicine.copy(id :id);
   }
 
-  Future<List<Medicine>> readAllMedicine() async{
-    final db = await instance.database;
-    final result = await db.query(tableMedicine);
-    return result.map((json) => Medicine.fromJson(json)).toList();
-  }
+  Future<List<Medicine>> readAllMedicine() async {
+  final db = await instance.database;
+  final result = await db.query(tableMedicine);
+
+  // Debug: print the raw result
+  print('Raw medicine data: $result');
+
+  return result.map((json) {
+    // Log a warning if id or duration is null
+    if (json[MedicineFields.id] == null) {
+      print('Warning: Found a medicine entry with null id: $json');
+      return null; // Skip this entry
+    }
+    
+    if (json[MedicineFields.duration] == null) {
+      print('Warning: Found a medicine entry with null duration: $json');
+      return null; // Skip this entry
+    }
+
+    // Debug: Log the extracted values
+    print('Extracted values - ID: ${json[MedicineFields.id]}, '
+          'Medicine Name: ${json[MedicineFields.medicineName]}, '
+          'Duration: ${json[MedicineFields.duration]}, '
+          'Timing: ${json[MedicineFields.timing]}, '
+          'Photo: ${json[MedicineFields.photo]}');
+
+    return Medicine(
+      id: json[MedicineFields.id] as int, // Cast to int
+      medicineName: json[MedicineFields.medicineName] as String? ?? '', 
+      duration: json[MedicineFields.duration] as String, 
+      timing: json[MedicineFields.timing] as String? ?? '',
+      photo: json[MedicineFields.photo] as String, 
+    );
+  }).whereType<Medicine>().toList(); 
+}
 }

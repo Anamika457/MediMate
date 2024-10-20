@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 application
-INJECTED from /home/shraavv/Desktop/MediMate/android/app/src/main/AndroidManifest.xml:2:5-32:19
+INJECTED from /home/shraavv/Desktop/MediMate/android/app/src/main/AndroidManifest.xml:5:5-38:19
 MERGED from [:image_picker_android] /home/shraavv/Desktop/MediMate/build/image_picker_android/intermediates/merged_manifest/debug/AndroidManifest.xml:10:5-34:19
 MERGED from [:image_picker_android] /home/shraavv/Desktop/MediMate/build/image_picker_android/intermediates/merged_manifest/debug/AndroidManifest.xml:10:5-34:19
 MERGED from [androidx.window:window:1.2.0] /home/shraavv/.gradle/caches/transforms-3/5ab9d1d95ba89b6c435c79a8ef4bb375/transformed/jetified-window-1.2.0/AndroidManifest.xml:22:5-29:19
@@ -20,27 +20,31 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /home/shraa
 	android:name
 		INJECTED from /home/shraavv/Desktop/MediMate/android/app/src/main/AndroidManifest.xml
 manifest
-ADDED from /home/shraavv/Desktop/MediMate/android/app/src/main/AndroidManifest.xml:1:1-33:12
-INJECTED from /home/shraavv/Desktop/MediMate/android/app/src/main/AndroidManifest.xml:1:1-33:12
-INJECTED from /home/shraavv/Desktop/MediMate/android/app/src/main/AndroidManifest.xml:1:1-33:12
-INJECTED from /home/shraavv/Desktop/MediMate/android/app/src/main/AndroidManifest.xml:1:1-33:12
-MERGED from /home/shraavv/Desktop/MediMate/android/app/src/main/AndroidManifest.xml:1:1-33:12
+ADDED from /home/shraavv/Desktop/MediMate/android/app/src/main/AndroidManifest.xml:1:1-39:12
+INJECTED from /home/shraavv/Desktop/MediMate/android/app/src/main/AndroidManifest.xml:1:1-39:12
+INJECTED from /home/shraavv/Desktop/MediMate/android/app/src/main/AndroidManifest.xml:1:1-39:12
+INJECTED from /home/shraavv/Desktop/MediMate/android/app/src/main/AndroidManifest.xml:1:1-39:12
+MERGED from /home/shraavv/Desktop/MediMate/android/app/src/main/AndroidManifest.xml:1:1-39:12
+MERGED from [:flutter_local_notifications] /home/shraavv/Desktop/MediMate/build/flutter_local_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-12:12
 MERGED from [:flutter_native_splash] /home/shraavv/Desktop/MediMate/build/flutter_native_splash/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [:image_picker_android] /home/shraavv/Desktop/MediMate/build/image_picker_android/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-36:12
 MERGED from [:flutter_plugin_android_lifecycle] /home/shraavv/Desktop/MediMate/build/flutter_plugin_android_lifecycle/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
+MERGED from [:flutter_tts] /home/shraavv/Desktop/MediMate/build/flutter_tts/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
+MERGED from [:permission_handler_android] /home/shraavv/Desktop/MediMate/build/permission_handler_android/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [:sqflite_android] /home/shraavv/Desktop/MediMate/build/sqflite_android/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
+MERGED from [androidx.media:media:1.1.0] /home/shraavv/.gradle/caches/transforms-3/e4de9a3525f937a8f6d4da271d131f22/transformed/media-1.1.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.fragment:fragment:1.7.1] /home/shraavv/.gradle/caches/transforms-3/60844366ea525d13fb1a11c2396bc3b3/transformed/fragment-1.7.1/AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.activity:activity:1.9.2] /home/shraavv/.gradle/caches/transforms-3/537e5c04024db610a3ccfb612119ab99/transformed/jetified-activity-1.9.2/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.window:window:1.2.0] /home/shraavv/.gradle/caches/transforms-3/5ab9d1d95ba89b6c435c79a8ef4bb375/transformed/jetified-window-1.2.0/AndroidManifest.xml:17:1-31:12
 MERGED from [androidx.window:window-java:1.2.0] /home/shraavv/.gradle/caches/transforms-3/55d814a1576734ac880dca6a01e1ced3/transformed/jetified-window-java-1.2.0/AndroidManifest.xml:17:1-21:12
 MERGED from [androidx.loader:loader:1.0.0] /home/shraavv/.gradle/caches/transforms-3/28a7104ce44bf45ce7a21c1a4781dd8d/transformed/loader-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.viewpager:viewpager:1.0.0] /home/shraavv/.gradle/caches/transforms-3/667639e579456fc09819f28da8c92386/transformed/viewpager-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.7.0] /home/shraavv/.gradle/caches/transforms-3/97c5658d761da2daf3d8730874d46c5d/transformed/jetified-lifecycle-livedata-core-ktx-2.7.0/AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.lifecycle:lifecycle-livedata:2.7.0] /home/shraavv/.gradle/caches/transforms-3/cdf507c0d95e86e37c743abfbfafa376/transformed/lifecycle-livedata-2.7.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.7.0] /home/shraavv/.gradle/caches/transforms-3/c1fde2040a24ca66ac00d364336a7009/transformed/lifecycle-livedata-core-2.7.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.7.0] /home/shraavv/.gradle/caches/transforms-3/53e5082e3f9fdccc9f2e8388f2a87ea4/transformed/lifecycle-viewmodel-2.7.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.7.0] /home/shraavv/.gradle/caches/transforms-3/bea0671078170bf928699b787da27711/transformed/jetified-lifecycle-viewmodel-savedstate-2.7.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.core:core-ktx:1.13.1] /home/shraavv/.gradle/caches/transforms-3/8f4c693ea9f357397f7dade6a8d12b85/transformed/jetified-core-ktx-1.13.1/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.viewpager:viewpager:1.0.0] /home/shraavv/.gradle/caches/transforms-3/667639e579456fc09819f28da8c92386/transformed/viewpager-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.customview:customview:1.0.0] /home/shraavv/.gradle/caches/transforms-3/b9d97fb34451343f9430e1aa7073afa6/transformed/customview-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.core:core:1.13.1] /home/shraavv/.gradle/caches/transforms-3/7b9cc716733896fdb33be34a758f3226/transformed/core-1.13.1/AndroidManifest.xml:17:1-30:12
 MERGED from [androidx.lifecycle:lifecycle-runtime:2.7.0] /home/shraavv/.gradle/caches/transforms-3/8b8015088b2c08b7ad07b06ff4793fb7/transformed/lifecycle-runtime-2.7.0/AndroidManifest.xml:2:1-7:12
@@ -60,30 +64,48 @@ INJECTED from /home/shraavv/Desktop/MediMate/android/app/src/debug/AndroidManife
 INJECTED from /home/shraavv/Desktop/MediMate/android/app/src/debug/AndroidManifest.xml:1:1-7:12
 	package
 		INJECTED from /home/shraavv/Desktop/MediMate/android/app/src/main/AndroidManifest.xml
-		ADDED from /home/shraavv/Desktop/MediMate/android/app/src/main/AndroidManifest.xml:1:1-33:12
+		ADDED from /home/shraavv/Desktop/MediMate/android/app/src/main/AndroidManifest.xml:1:1-39:12
 		INJECTED from /home/shraavv/Desktop/MediMate/android/app/src/debug/AndroidManifest.xml
 	android:versionName
 		INJECTED from /home/shraavv/Desktop/MediMate/android/app/src/main/AndroidManifest.xml
-		ADDED from /home/shraavv/Desktop/MediMate/android/app/src/main/AndroidManifest.xml:1:1-33:12
+		ADDED from /home/shraavv/Desktop/MediMate/android/app/src/main/AndroidManifest.xml:1:1-39:12
 		INJECTED from /home/shraavv/Desktop/MediMate/android/app/src/debug/AndroidManifest.xml
 	android:versionCode
 		INJECTED from /home/shraavv/Desktop/MediMate/android/app/src/main/AndroidManifest.xml
-		ADDED from /home/shraavv/Desktop/MediMate/android/app/src/main/AndroidManifest.xml:1:1-33:12
+		ADDED from /home/shraavv/Desktop/MediMate/android/app/src/main/AndroidManifest.xml:1:1-39:12
 		INJECTED from /home/shraavv/Desktop/MediMate/android/app/src/debug/AndroidManifest.xml
 	xmlns:android
 		ADDED from /home/shraavv/Desktop/MediMate/android/app/src/main/AndroidManifest.xml:1:11-69
+uses-permission#android.permission.RECEIVE_BOOT_COMPLETED
+ADDED from /home/shraavv/Desktop/MediMate/android/app/src/main/AndroidManifest.xml:2:5-80
+	android:name
+		ADDED from /home/shraavv/Desktop/MediMate/android/app/src/main/AndroidManifest.xml:2:22-78
+uses-permission#android.permission.VIBRATE
+ADDED from /home/shraavv/Desktop/MediMate/android/app/src/main/AndroidManifest.xml:3:5-65
+MERGED from [:flutter_local_notifications] /home/shraavv/Desktop/MediMate/build/flutter_local_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:9:5-66
+MERGED from [:flutter_local_notifications] /home/shraavv/Desktop/MediMate/build/flutter_local_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:9:5-66
+	android:name
+		ADDED from /home/shraavv/Desktop/MediMate/android/app/src/main/AndroidManifest.xml:3:22-63
 uses-sdk
 INJECTED from /home/shraavv/Desktop/MediMate/android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /home/shraavv/Desktop/MediMate/android/app/src/main/AndroidManifest.xml
 INJECTED from /home/shraavv/Desktop/MediMate/android/app/src/main/AndroidManifest.xml
+MERGED from [:flutter_local_notifications] /home/shraavv/Desktop/MediMate/build/flutter_local_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:flutter_local_notifications] /home/shraavv/Desktop/MediMate/build/flutter_local_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:flutter_native_splash] /home/shraavv/Desktop/MediMate/build/flutter_native_splash/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:flutter_native_splash] /home/shraavv/Desktop/MediMate/build/flutter_native_splash/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:image_picker_android] /home/shraavv/Desktop/MediMate/build/image_picker_android/intermediates/merged_manifest/debug/AndroidManifest.xml:6:5-8:41
 MERGED from [:image_picker_android] /home/shraavv/Desktop/MediMate/build/image_picker_android/intermediates/merged_manifest/debug/AndroidManifest.xml:6:5-8:41
 MERGED from [:flutter_plugin_android_lifecycle] /home/shraavv/Desktop/MediMate/build/flutter_plugin_android_lifecycle/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:flutter_plugin_android_lifecycle] /home/shraavv/Desktop/MediMate/build/flutter_plugin_android_lifecycle/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:flutter_tts] /home/shraavv/Desktop/MediMate/build/flutter_tts/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:flutter_tts] /home/shraavv/Desktop/MediMate/build/flutter_tts/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:permission_handler_android] /home/shraavv/Desktop/MediMate/build/permission_handler_android/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:permission_handler_android] /home/shraavv/Desktop/MediMate/build/permission_handler_android/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:sqflite_android] /home/shraavv/Desktop/MediMate/build/sqflite_android/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:sqflite_android] /home/shraavv/Desktop/MediMate/build/sqflite_android/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.media:media:1.1.0] /home/shraavv/.gradle/caches/transforms-3/e4de9a3525f937a8f6d4da271d131f22/transformed/media-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.media:media:1.1.0] /home/shraavv/.gradle/caches/transforms-3/e4de9a3525f937a8f6d4da271d131f22/transformed/media-1.1.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.fragment:fragment:1.7.1] /home/shraavv/.gradle/caches/transforms-3/60844366ea525d13fb1a11c2396bc3b3/transformed/fragment-1.7.1/AndroidManifest.xml:5:5-44
 MERGED from [androidx.fragment:fragment:1.7.1] /home/shraavv/.gradle/caches/transforms-3/60844366ea525d13fb1a11c2396bc3b3/transformed/fragment-1.7.1/AndroidManifest.xml:5:5-44
 MERGED from [androidx.activity:activity:1.9.2] /home/shraavv/.gradle/caches/transforms-3/537e5c04024db610a3ccfb612119ab99/transformed/jetified-activity-1.9.2/AndroidManifest.xml:20:5-44
@@ -94,8 +116,6 @@ MERGED from [androidx.window:window-java:1.2.0] /home/shraavv/.gradle/caches/tra
 MERGED from [androidx.window:window-java:1.2.0] /home/shraavv/.gradle/caches/transforms-3/55d814a1576734ac880dca6a01e1ced3/transformed/jetified-window-java-1.2.0/AndroidManifest.xml:19:5-44
 MERGED from [androidx.loader:loader:1.0.0] /home/shraavv/.gradle/caches/transforms-3/28a7104ce44bf45ce7a21c1a4781dd8d/transformed/loader-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.loader:loader:1.0.0] /home/shraavv/.gradle/caches/transforms-3/28a7104ce44bf45ce7a21c1a4781dd8d/transformed/loader-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.viewpager:viewpager:1.0.0] /home/shraavv/.gradle/caches/transforms-3/667639e579456fc09819f28da8c92386/transformed/viewpager-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.viewpager:viewpager:1.0.0] /home/shraavv/.gradle/caches/transforms-3/667639e579456fc09819f28da8c92386/transformed/viewpager-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.7.0] /home/shraavv/.gradle/caches/transforms-3/97c5658d761da2daf3d8730874d46c5d/transformed/jetified-lifecycle-livedata-core-ktx-2.7.0/AndroidManifest.xml:5:5-44
 MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.7.0] /home/shraavv/.gradle/caches/transforms-3/97c5658d761da2daf3d8730874d46c5d/transformed/jetified-lifecycle-livedata-core-ktx-2.7.0/AndroidManifest.xml:5:5-44
 MERGED from [androidx.lifecycle:lifecycle-livedata:2.7.0] /home/shraavv/.gradle/caches/transforms-3/cdf507c0d95e86e37c743abfbfafa376/transformed/lifecycle-livedata-2.7.0/AndroidManifest.xml:20:5-44
@@ -108,6 +128,8 @@ MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.7.0] /home/shra
 MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.7.0] /home/shraavv/.gradle/caches/transforms-3/bea0671078170bf928699b787da27711/transformed/jetified-lifecycle-viewmodel-savedstate-2.7.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.core:core-ktx:1.13.1] /home/shraavv/.gradle/caches/transforms-3/8f4c693ea9f357397f7dade6a8d12b85/transformed/jetified-core-ktx-1.13.1/AndroidManifest.xml:5:5-44
 MERGED from [androidx.core:core-ktx:1.13.1] /home/shraavv/.gradle/caches/transforms-3/8f4c693ea9f357397f7dade6a8d12b85/transformed/jetified-core-ktx-1.13.1/AndroidManifest.xml:5:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] /home/shraavv/.gradle/caches/transforms-3/667639e579456fc09819f28da8c92386/transformed/viewpager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] /home/shraavv/.gradle/caches/transforms-3/667639e579456fc09819f28da8c92386/transformed/viewpager-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.customview:customview:1.0.0] /home/shraavv/.gradle/caches/transforms-3/b9d97fb34451343f9430e1aa7073afa6/transformed/customview-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.customview:customview:1.0.0] /home/shraavv/.gradle/caches/transforms-3/b9d97fb34451343f9430e1aa7073afa6/transformed/customview-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.core:core:1.13.1] /home/shraavv/.gradle/caches/transforms-3/7b9cc716733896fdb33be34a758f3226/transformed/core-1.13.1/AndroidManifest.xml:20:5-44
@@ -148,6 +170,10 @@ uses-permission#android.permission.INTERNET
 ADDED from /home/shraavv/Desktop/MediMate/android/app/src/debug/AndroidManifest.xml:6:5-66
 	android:name
 		ADDED from /home/shraavv/Desktop/MediMate/android/app/src/debug/AndroidManifest.xml:6:22-64
+uses-permission#android.permission.POST_NOTIFICATIONS
+ADDED from [:flutter_local_notifications] /home/shraavv/Desktop/MediMate/build/flutter_local_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:10:5-77
+	android:name
+		ADDED from [:flutter_local_notifications] /home/shraavv/Desktop/MediMate/build/flutter_local_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:10:22-74
 provider#io.flutter.plugins.imagepicker.ImagePickerFileProvider
 ADDED from [:image_picker_android] /home/shraavv/Desktop/MediMate/build/image_picker_android/intermediates/merged_manifest/debug/AndroidManifest.xml:11:9-19:20
 	android:grantUriPermissions

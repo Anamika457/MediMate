@@ -28,7 +28,23 @@
 		<string>LaunchScreen</string>
 		<key>UIMainStoryboardFile</key>
 		<string>Main</string>
+		<key>UIBackgroundModes</key>
+		<array>
+			<string>fetch</string>
+		</array>
+		<key>NSUserNotificationUsageDescription</key>
+		<string>This app needs notification permissions to alert you.</string>
 		<key>UISupportedInterfaceOrientations</key>
+		<key>NSUserNotificationAlertStyle</key>
+		<string>alert</string>
+		<key>UIBackgroundModes</key>
+		<array>
+			<string>fetch</string>
+			<string>remote-notification</string>
+		</array>
+		<key>NSUserTrackingUsageDescription</key>
+		<string>We use your data to provide notifications</string>
+
 		<array>
 			<string>UIInterfaceOrientationPortrait</string>
 			<string>UIInterfaceOrientationLandscapeLeft</string>
