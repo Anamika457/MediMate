@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:medi_mate/features/help/help.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -59,8 +60,12 @@ class HomeScreen extends StatelessWidget {
                 width: 70, 
                 height: 70, 
                 child: FloatingActionButton(
+                  heroTag:'help',
                   onPressed: () {
-                    // TODO: Add action for the help button
+                     Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const HelpScreen()),
+              );
                   },
                   backgroundColor: const Color(0xFF78C4A1),
                   shape: const CircleBorder(
@@ -77,6 +82,7 @@ class HomeScreen extends StatelessWidget {
               width: 90, 
               height: 90,
               child: FloatingActionButton(
+                heroTag: 'voice',
                 onPressed: () {
                   // TODO: Add action for the microphone button
                 },
@@ -96,6 +102,7 @@ class HomeScreen extends StatelessWidget {
                 width: 70, 
                 height: 70, 
                 child: FloatingActionButton(
+                  heroTag:'add',
                   onPressed: () {
                     // TODO: Add action for the add button
                   },
